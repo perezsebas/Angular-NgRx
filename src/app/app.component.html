@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<!-- <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -18,13 +18,9 @@
   </li>
 </ul>
 
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Favorite food" value="Sushi">
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Leave a comment"></textarea>
-  </mat-form-field>
-</form>
-
+<nav>
+  <a [routerLink]="['/employees']">Employees</a>
+  <a [routerLink]="['/component-two/test']">Component Test</a>
+  <a [routerLink]="['/component-two', 123]">Component Two (id: 123)</a>
+</nav> -->
+<router-outlet></router-outlet>
