@@ -3,12 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { NewEmployeeComponent } from './new-employee/new-employee.component';
 
-import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routes';
-import { NewEmployeeComponent } from './new-employee/new-employee.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { NewEmployeeComponent } from './new-employee/new-employee.component';
   ],
   imports: [
     BrowserModule,
-    MaterialModule,
     BrowserAnimationsModule,
     routing
   ],
