@@ -8,11 +8,13 @@ import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFor
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routes';
+import { NewEmployeeComponent } from './new-employee/new-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    NewEmployeeComponent
   ],
   imports: [
     BrowserModule,
