@@ -1,3 +1,133 @@
-<p>
-  new-employee works!
-</p>
+<div class="container">
+
+  <h4>New Employee</h4>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="name">Name</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="name">
+      </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="dab">Dab</label>
+        </div>
+        <select class="custom-select" id="dab">
+          <option>Select...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="dab">Area</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-light active">
+          <input type="radio" name="options" id="services" autocomplete="off"> Services
+        </label>
+        <label class="btn btn-light">
+          <input type="radio" name="options" id="kitchen" autocomplete="off"> Kitchen
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="country">Country</label>
+        </div>
+        <select class="custom-select" id="country">
+          <option>Select...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="jobTitle">Job Title</label>
+        </div>
+        <select class="custom-select" id="jobTitle">
+          <option>Select...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="username">Username</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="username">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="tipRate">Tip Rate</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Name" aria-label="Tip Rate" aria-describedby="tipRate">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="hireDate">Hire Date</label>
+        </div>
+        <select class="custom-select" id="hireDate">
+          <option>Select...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-light active">
+          <input type="checkbox" id="status" checked autocomplete="off"> Status
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-1">
+      <button [routerLink]="['/employees']" type="button" class="btn btn-link" id="save">
+        <fa-icon [icon]="faChevronLeft"></fa-icon> Back</button>
+    </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-light" id="save">Save</button>
+    </div>
+  </div>
+
+</div>
