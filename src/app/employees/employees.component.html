@@ -35,13 +35,13 @@
             <td>{{ employee.username }}</td>
             <td>{{ employee.hireDate }}</td>
             <td>
-              <button [routerLink]="['/new-employee', employee.name]" type="button" class="btn btn-link">
+              <button [routerLink]="['/new-employee', employee.name]" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Edit">
                 <fa-icon [icon]="faPencil"></fa-icon>
               </button>
-              <button [routerLink]="['/new-employee']" type="button" class="btn btn-link">
+              <button [routerLink]="['/new-employee']" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="View">
                 <fa-icon [icon]="faEye"></fa-icon>
               </button>
-              <button [routerLink]="['/new-employee']" type="button" class="btn btn-link">
+              <button [routerLink]="['/new-employee']" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Delete">
                 <fa-icon [icon]="faTrash"></fa-icon>
               </button>
             </td>
