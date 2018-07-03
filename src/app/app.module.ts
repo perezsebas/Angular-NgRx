@@ -2,28 +2,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { EmployeesComponent } from './employees/employees.component';
-import { NewEmployeeComponent } from './new-employee/new-employee.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
+import { NewEmployeeComponent } from './employees/new-employee/new-employee.component';
+import { PageNotFoundComponent } from './employees/page-not-found/page-not-found.component';
 
 import { AppRoutingModule } from './app.routes';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { StoreModule } from '@ngrx/store';
+import { employeeReducer } from './reducers/employee.reducer';
+import { EffectsModule } from '@ngrx/effects';
+// import { EmployeeEffects } from './effects/employee.effects';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeesComponent,
+    EmployeesListComponent,
     NewEmployeeComponent,
     PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    StoreModule.forRoot({employees: employeeReducer})
+    // EffectsModule.
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
