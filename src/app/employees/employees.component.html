@@ -1,20 +1,58 @@
 <div class="container">
 
   <div class="row">
+    <div class="col-md-1">
+      <p class="font-weight-bold">Employees</p>
+    </div>
     <div class="col-md-3">
-      One of three columns
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><fa-icon [icon]="faSearch"></fa-icon></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Search by anything" aria-label="Search" aria-describedby="basic-addon1">
+      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      One of three columns
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Username</th>
+            <th scope="col">Hire Date</th>
+            <th scope="col">Hire Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-3">
-      <button type="button" class="btn btn-light">Light</button>
+      <button [routerLink]="['/new-employee']" type="button" class="btn btn-light">+ Add New Employee</button>
     </div>
   </div>
 

@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routing } from './app.routes';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { routing } from './app.routes';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    routing
+    routing,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
