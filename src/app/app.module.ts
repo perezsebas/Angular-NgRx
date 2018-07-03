@@ -4,27 +4,29 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { NewEmployeeComponent } from './new-employee/new-employee.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { routing } from './app.routes';
+import { AppRoutingModule } from './app.routes';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
-    NewEmployeeComponent
+    NewEmployeeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    routing,
+    AppRoutingModule,
     FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
