@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../../models/app-state';
 import * as employeeActions from './../../actions/employee.actions';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-employees',
@@ -17,30 +18,18 @@ export class EmployeesListComponent implements OnInit {
   faEye = faEye;
   faTrash = faTrashAlt;
 
-  employees : Employee[] = [];
+  public employees : Observable<any[]>
 
   employees$: Observable<any>;
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    public db: AngularFirestore
   ) {
 
     this.employees$ = this.store.select(state => state.employees);
 
-    this.employees = [
-      {
-        'name': 'Juan',
-        'age': 31,
-        'username': 'juanperez',
-        'hireDate': 'Thu Oct 02 1986 00:00:00'
-      },
-      {
-        'name': 'Juliana',
-        'age': 32,
-        'username': 'jsantana',
-        'hireDate': 'Wed Mar 26 1986 00:00:00'
-      }
-    ];
+    this.employees = db.collection('/employees').valueChanges();
    }
 
   ngOnInit() {

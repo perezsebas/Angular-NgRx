@@ -29,13 +29,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees">
+          <tr *ngFor="let employee of employees | async">
             <td>{{ employee.name }}</td>
             <td>{{ employee.age }}</td>
             <td>{{ employee.username }}</td>
             <td>{{ employee.hireDate }}</td>
             <td>
-              <button [routerLink]="['/new-employee', employee.name]" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Edit">
+              <button [routerLink]="['/new-employee', employee.name]" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top"
+                title="Edit">
                 <fa-icon [icon]="faPencil"></fa-icon>
               </button>
               <button [routerLink]="['/new-employee']" type="button" class="btn btn-link" data-toggle="tooltip" data-placement="top" title="View">

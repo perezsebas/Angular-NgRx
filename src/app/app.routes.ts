@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
 import { NewEmployeeComponent } from './employees/new-employee/new-employee.component';
-import { PageNotFoundComponent } from './employees/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'employees', pathMatch: 'full' },
