@@ -30,7 +30,14 @@ export class EmployeesListComponent implements OnInit {
     public db: AngularFirestore
   ) {
 
-    // this.employees$ = this.store.select(state => state.employees);
+    // this.employees$ = this.store.select(state => state.employees);  
+  }
+
+  ngOnInit() {
+    this.getEmployees();
+  }
+
+  getEmployees() {
     this.employeesCollectionRef = this.db.collection<Employee>('/employees');
     this.employees$ = this.employeesCollectionRef.snapshotChanges().pipe(
       map(actions => {
@@ -41,13 +48,7 @@ export class EmployeesListComponent implements OnInit {
         });
       })
     )
-  }
 
-  ngOnInit() {
-    this.getEmployees();
-  }
-
-  getEmployees() {
     this.store.dispatch(new employeeActions.LoadEmployeesAction());
   }
 
