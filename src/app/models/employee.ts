@@ -4,10 +4,10 @@ export interface Employee {
     country: string,
     dab: string,
     hireDate: string,
+    id?: string,
     jobTitle: string,
     name: string,
     status: boolean,
     tipRate: number,
     username: string
-    
   }

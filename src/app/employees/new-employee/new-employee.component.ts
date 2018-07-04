@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { Http, Response } from '@angular/http';
-// import { map } from 'rxjs/operators';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-new-employee',

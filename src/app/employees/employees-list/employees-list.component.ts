@@ -3,9 +3,11 @@ import { faSearch, faPencilAlt, faEye, faTrashAlt } from '@fortawesome/free-soli
 import { Employee } from '../../models/employee';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AppState } from '../../models/app-state';
 import * as employeeActions from './../../actions/employee.actions';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+
 
 @Component({
   selector: 'app-employees',
@@ -19,7 +21,7 @@ export class EmployeesListComponent implements OnInit {
   faTrash = faTrashAlt;
 
   employeesCollectionRef: AngularFirestoreCollection<Employee>;
-  employees$ : Observable<Employee[]>
+  employees$: Observable<Employee[]>
 
   // employees$: Observable<any>;
 
@@ -30,14 +32,23 @@ export class EmployeesListComponent implements OnInit {
 
     // this.employees$ = this.store.select(state => state.employees);
     this.employeesCollectionRef = this.db.collection<Employee>('/employees');
-    this.employees$ = this.employeesCollectionRef.valueChanges();
-   }
+    // this.employees$ = this.employeesCollectionRef.valueChanges();
+    this.employees$ = this.employeesCollectionRef.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(action => {
+          const data = action.payload.doc.data() as Employee;
+          const id = action.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    )
+  }
 
   ngOnInit() {
     this.getEmployees();
   }
 
-  getEmployees(){
+  getEmployees() {
     this.store.dispatch(new employeeActions.LoadEmployeesAction())
   }
 
