@@ -54,9 +54,9 @@
       <div class="input-group mb-3">
         <select class="custom-select" id="country">
           <option>Select...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option *ngFor="let country of countries" value="{{ country.name }}">
+            {{ country.name }}
+          </option>
         </select>
       </div>
     </div>

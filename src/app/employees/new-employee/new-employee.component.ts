@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { Http, Response } from '@angular/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-employee',
@@ -8,10 +10,23 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class NewEmployeeComponent implements OnInit {
   faChevronLeft = faChevronLeft;
+  CountriesUrl:string = 'https://restcountries.eu/rest/v2/all';
+  countries: any = [];
 
-  constructor() { }
+  constructor(
+    private http: Http
+  ) { 
+    this.getCountries();
+  }
 
   ngOnInit() {
   }
 
+  getCountries(){
+    this.http.get(this.CountriesUrl)
+    .subscribe(res => {
+      this.countries = res.json();
+      console.log(this.countries);
+    });
+  }
 }

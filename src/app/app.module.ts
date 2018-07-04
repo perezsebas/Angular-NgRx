@@ -7,6 +7,7 @@ import { NewEmployeeComponent } from './employees/new-employee/new-employee.comp
 import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
 
 import { AppRoutingModule } from './app.routes';
+import { HttpModule } from '@angular/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -30,6 +31,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpModule,
     FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebase, 'TeamInt'),
     AngularFirestoreModule,
