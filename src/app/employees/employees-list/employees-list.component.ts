@@ -32,7 +32,6 @@ export class EmployeesListComponent implements OnInit {
 
     // this.employees$ = this.store.select(state => state.employees);
     this.employeesCollectionRef = this.db.collection<Employee>('/employees');
-    // this.employees$ = this.employeesCollectionRef.valueChanges();
     this.employees$ = this.employeesCollectionRef.snapshotChanges().pipe(
       map(actions => {
         return actions.map(action => {
@@ -49,7 +48,7 @@ export class EmployeesListComponent implements OnInit {
   }
 
   getEmployees() {
-    this.store.dispatch(new employeeActions.LoadEmployeesAction())
+    this.store.dispatch(new employeeActions.LoadEmployeesAction());
   }
 
 }

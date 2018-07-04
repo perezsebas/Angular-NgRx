@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { Http } from '@angular/http';
+import { NewEmployeeService } from './new-employee.service';
 
 @Component({
   selector: 'app-new-employee',
@@ -9,22 +9,21 @@ import { Http } from '@angular/http';
 })
 export class NewEmployeeComponent implements OnInit {
   faChevronLeft = faChevronLeft;
-  CountriesUrl:string = 'https://restcountries.eu/rest/v2/all';
+
   countries: any = [];
 
-  constructor(
-    private http: Http
-  ) { 
-    this.getCountries();
+  constructor(private NewEmployeeService: NewEmployeeService) {
   }
 
   ngOnInit() {
+    this.getCountries();
   }
 
-  getCountries(){
-    this.http.get(this.CountriesUrl)
-    .subscribe(res => {
-      this.countries = res.json();
-    });
+  getCountries() {
+    this.NewEmployeeService.getCountries()
+      .subscribe(res => {
+        this.countries = res.json();
+      });
   }
+  
 }
