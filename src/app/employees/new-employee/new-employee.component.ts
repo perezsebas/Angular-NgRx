@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Http, Response } from '@angular/http';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-employee',
@@ -26,7 +26,6 @@ export class NewEmployeeComponent implements OnInit {
     this.http.get(this.CountriesUrl)
     .subscribe(res => {
       this.countries = res.json();
-      console.log(this.countries);
     });
   }
 }

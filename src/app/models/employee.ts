@@ -1,6 +1,13 @@
 export interface Employee {
-    name: string;
     age: number;
-    username: string,
-    hireDate: string
+    area: string,
+    country: string,
+    dab: string,
+    hireDate: string,
+    jobTitle: string,
+    name: string,
+    status: boolean,
+    tipRate: number,
+    username: string
+    
   }
