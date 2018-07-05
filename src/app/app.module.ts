@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
@@ -34,6 +35,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     HttpModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'TeamInt'),
     AngularFirestoreModule.enablePersistence(),
     StoreModule.forRoot({ employees: employeeReducer }),

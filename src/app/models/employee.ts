@@ -1,8 +1,7 @@
 export interface Employee {
-    age: number;
     area: string,
     country: string,
-    dab: string,
+    dob: string,
     hireDate: string,
     id?: string,
     jobTitle: string,

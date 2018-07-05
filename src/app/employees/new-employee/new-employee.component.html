@@ -3,133 +3,141 @@
   <h4>New Employee</h4>
   <hr />
 
-  <div class="row">
-    <div class="col-md-2">
-      <p>Name</p>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="name">
-      </div>
-    </div>
-    <div class="col-md-6">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
 
-    </div>
-  </div>
+    <div class="row">
+      <div class="col-md-2">
+        <p>Name</p>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" formControlName="name" placeholder="Name" aria-label="Username" aria-describedby="name">
+        </div>
+      </div>
+      <div class="col-md-6">
 
-  <div class="row">
-    <div class="col-md-2">
-      <p>Dab</p>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group mb-3">
-        <select class="custom-select" id="dab">
-          <option>Select...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
       </div>
     </div>
-    <div class="col-md-2 offset-md-1">
-      <p>Area</p>
-    </div>
-    <div class="col-md-3">
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-light active">
-          <input type="radio" name="options" id="services" autocomplete="off"> Services
-        </label>
-        <label class="btn btn-light">
-          <input type="radio" name="options" id="kitchen" autocomplete="off"> Kitchen
-        </label>
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-2">
-      <p>Country</p>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group mb-3">
-        <select class="custom-select" id="country">
-          <option>Select...</option>
-          <option *ngFor="let country of countries" value="{{ country.name }}">
-            {{ country.name }}
-          </option>
-        </select>
+    <div class="row">
+      <div class="col-md-2">
+        <p>Dab</p>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group mb-3">
+          <select class="custom-select" formControlName="dab" id="dab">
+            <option>Select...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 offset-md-1">
+        <p>Area</p>
+      </div>
+      <div class="col-md-3">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-light">
+            <input type="radio" name="area" formControlName="area" value="services"> Services
+          </label>
+          <label class="btn btn-light">
+            <input type="radio" name="area" formControlName="area" value="kitchen"> Kitchen
+          </label>
+        </div>
       </div>
     </div>
-    <div class="col-md-2 offset-md-1">
-      <p>Job Title</p>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group mb-3">
-        <select class="custom-select" id="jobTitle">
-          <option>Select...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-2">
-      <p>Username</p>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="username">
+    <div class="row">
+      <div class="col-md-2">
+        <p>Country</p>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group mb-3">
+          <select class="custom-select" formControlName="country" id="country">
+            <option>Select...</option>
+            <option *ngFor="let country of countries" value="{{ country.name }}">
+              {{ country.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 offset-md-1">
+        <p>Job Title</p>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group mb-3">
+          <select class="custom-select" formControlName="jobTitle" id="jobTitle">
+            <option>Select...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
       </div>
     </div>
-    <div class="col-md-2 offset-md-1">
-      <p>Tip Rate</p>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Name" aria-label="Tip Rate" aria-describedby="tipRate">
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-2">
-      <p>Hire Date</p>
-    </div>
-    <div class="col-md-3">
-      <div class="input-group mb-3">
-        <select class="custom-select" id="hireDate">
-          <option>Select...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+    <div class="row">
+      <div class="col-md-2">
+        <p>Username</p>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" formControlName="username" placeholder="Username" aria-label="Username" aria-describedby="username">
+        </div>
+      </div>
+      <div class="col-md-2 offset-md-1">
+        <p>Tip Rate</p>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" formControlName="tipRate" placeholder="Tip Rate" aria-label="Tip Rate" aria-describedby="tipRate">
+        </div>
       </div>
     </div>
-    <div class="col-md-2 offset-md-1">
-      <p>Status</p>
-    </div>
-    <div class="col-md-3">
-      <div class="btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-light active">
-          <input type="checkbox" id="status" checked autocomplete="off"> Status
-        </label>
+
+    <div class="row">
+      <div class="col-md-2">
+        <p>Hire Date</p>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group mb-3">
+          <select class="custom-select" formControlName="hireDate" id="hireDate">
+            <option>Select...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 offset-md-1">
+        <p>Status</p>
+      </div>
+      <div class="col-md-3">
+        <div class="btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-light active">
+            <input type="checkbox" formControlName="status" id="status" checked autocomplete="off"> Status
+          </label>
+        </div>
       </div>
     </div>
-  </div>
 
-  <br />
+    <br />
 
-  <div class="row">
-    <div class="col-md-1">
-      <button [routerLink]="['/employees']" type="button" class="btn btn-link" id="save">
-        <fa-icon [icon]="faChevronLeft"></fa-icon> Back</button>
+    <div class="row">
+      <div class="col-md-1">
+        <button [routerLink]="['/employees']" type="button" class="btn btn-link" id="save">
+          <fa-icon [icon]="faChevronLeft"></fa-icon> Back</button>
+      </div>
+      <div class="col-md-1">
+        <button type="submit" [disabled]="employeeForm.pristine" class="btn btn-light" id="save">Save</button>
+      </div>
     </div>
-    <div class="col-md-1">
-      <button type="button" class="btn btn-light" id="save">Save</button>
-    </div>
-  </div>
+
+  </form>
+
+  <p>Form value: {{ employeeForm.value | json }}</p>
+
+  <p>Form status: {{ employeeForm.status | json }}</p>
 
 </div>
