@@ -1,21 +1,36 @@
 import { Employee } from "../models/employee";
 
 export const LOAD_EMPLOYEES = 'LOAD_EMPLOYEES';
-export const LOAD_EMPLOYEES_SUCCESS = 'LOAD_EMPLOYEES';
+export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
+export const EDIT_EMPLOYEE = 'EDIT_EMPLOYEE';
+export const DELETE_EMPLOYEE = 'DELETE_EMPLOYEE';
 
 export class LoadEmployeesAction {
     readonly type = LOAD_EMPLOYEES;
 
-    constructor(){}
+    constructor(public payload: Employee[]) { }
 }
 
-export class LoadEmployeesSuccessAction {
-    readonly type = LOAD_EMPLOYEES_SUCCESS;
+export class AddEmployeeAction {
+    readonly type = ADD_EMPLOYEE;
 
-    constructor(public payload: Employee[]){}
+    constructor(public payload: Employee) { }
 }
 
-export type Action
-//  = LoadEmployeesAction
-//  | LoadEmployeesSuccessAction
-= LoadEmployeesSuccessAction
+export class EditEmployeeAction {
+    readonly type = EDIT_EMPLOYEE;
+
+    constructor(public payload: Employee) { }
+}
+
+export class DeleteEmployeeAction {
+    readonly type = DELETE_EMPLOYEE;
+
+    constructor(public payload: string) { }
+}
+
+export type Actions
+    = LoadEmployeesAction
+    | AddEmployeeAction
+    | EditEmployeeAction
+    | DeleteEmployeeAction

@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { faSearch, faPencilAlt, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
 import { Employee } from '../../models/employee';
+import { AppState } from '../../models/app-state';
+
 import { Store } from '@ngrx/store';
+import * as employeeActions from './../../actions/employee.actions';
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { AppState } from '../../models/app-state';
-import * as employeeActions from './../../actions/employee.actions';
+
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 
@@ -22,8 +26,6 @@ export class EmployeesListComponent implements OnInit {
 
   employeesCollectionRef: AngularFirestoreCollection<Employee>;
   employees$: Observable<Employee[]>
-
-  // employees$: Observable<any>;
 
   constructor(
     private store: Store<AppState>,
@@ -49,7 +51,9 @@ export class EmployeesListComponent implements OnInit {
       })
     )
 
-    this.store.dispatch(new employeeActions.LoadEmployeesAction());
+    this.employees$.subscribe(employees => {
+      this.store.dispatch(new employeeActions.LoadEmployeesAction(employees));
+    })
   }
 
 }

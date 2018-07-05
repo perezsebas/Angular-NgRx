@@ -56,7 +56,6 @@ export class NewEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.getCountries();
-    this.addUSer();
   }
 
   getCountries() {
@@ -66,18 +65,9 @@ export class NewEmployeeComponent implements OnInit {
       });
   }
 
-  addUSer() {
-    this.employeesCollectionRef.add({
-      "area": "Services",
-      "country": "Colombia",
-      "dob": "Thu Oct 02 1986 00:00:00",
-      "hireDate": "Thu Oct 02 1986 00:00:00",
-      "jobTitle": "Manager",
-      "name": "User",
-      "status": true,
-      "tipRate": 0.1,
-      "username": "user"
-    });
+  addUser(newEmployee) {
+    this.employeesCollectionRef.add(newEmployee);   
+    this.store.dispatch(new employeeActions.AddEmployeeAction(newEmployee));
   }
 
 }
