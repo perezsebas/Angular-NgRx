@@ -8,28 +8,36 @@ const initialState: AppState = {
 export function employeeReducer(state = initialState, action: employeeActions.Actions) {
     switch (action.type) {
         case employeeActions.LOAD_EMPLOYEES: {
-            return state = {
+            return {
+                ...state,
                 employees: action.payload
             };
         }
         case employeeActions.ADD_EMPLOYEE: {
             return {
                 ...state,
-                // employees: [action.payload, ...state.employees]
                 employees: [...state.employees, action.payload]
             };
         }
         case employeeActions.EDIT_EMPLOYEE: {
-            return action.payload;
+            return {
+                ...state,
+                employees: state.employees.map(employee => {
+                    return employee.id === action.payload.id
+                        ? Object.assign({}, employee, { value: action.payload })
+                        : employee;
+                })
+            }
         }
         case employeeActions.DELETE_EMPLOYEE: {
-            return state = {
+            return {
+                ...state,
                 employees: state.employees.filter(employee => employee.id !== action.payload)
             };
         }
+
         default: {
             return state;
         }
-
     }
 }
