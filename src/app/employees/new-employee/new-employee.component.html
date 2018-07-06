@@ -83,23 +83,32 @@
             </option>
           </select>
         </div>
-        <div *ngIf="employeeForm.controls.area.invalid && (employeeForm.controls.area.dirty || employeeForm.controls.area.touched)"
+        <div *ngIf="employeeForm.controls.country.invalid && (employeeForm.controls.country.dirty || employeeForm.controls.country.touched)"
           class="alert alert-danger">
-          <div *ngIf="employeeForm.controls.area.errors.required">
-            Area is required.
+          <div *ngIf="employeeForm.controls.country.errors.required">
+            Country is required.
           </div>
         </div>
       </div>
       <div class="col-md-2 offset-md-1">
-        <p>Job Title</p>
+        <p *ngIf="this.employeeForm.value.area">Job Title</p>
       </div>
       <div class="col-md-3">
         <div class="input-group mb-3">
-          <select class="custom-select" formControlName="jobTitle" id="jobTitle">
+          <select *ngIf="this.employeeForm.value.area === 'services'" class="custom-select" formControlName="jobTitle" id="jobTitle">
             <option value="0" selected>Select job title...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="Manager">Manager</option>
+            <option value="Host">Host</option>
+            <option value="Tuttofare">Tuttofare</option>
+            <option value="Waitress">Waitress</option>
+            <option value="Dinning Room Manager">Dinning Room Manager</option>
+          </select>
+          <select *ngIf="this.employeeForm.value.area === 'kitchen'" class="custom-select" formControlName="jobTitle" id="jobTitle">
+            <option value="0" selected>Select job title...</option>
+            <option value="Chef">Chef</option>
+            <option value="Sous Chef">Sous Chef</option>
+            <option value="Dishwasher">Dishwasher</option>
+            <option value="Cook">Cook</option>
           </select>
         </div>
         <div *ngIf="employeeForm.controls.jobTitle.invalid && (employeeForm.controls.jobTitle.dirty || employeeForm.controls.jobTitle.touched)"
@@ -127,14 +136,16 @@
         </div>
       </div>
       <div class="col-md-2 offset-md-1">
-        <p>Tip Rate</p>
+        <p [ngStyle]="{ 'display': (this.employeeForm.value.jobTitle === 'Waitress' || this.employeeForm.value.jobTitle === 'Dinning Room Manager') ? 'block
+        ' : 'none' }">Tip Rate</p>
       </div>
       <div class="col-md-3">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" formControlName="tipRate" placeholder="Tip Rate" aria-label="Tip Rate" aria-describedby="tipRate">
+          <input [ngStyle]="{ 'display': (this.employeeForm.value.jobTitle === 'Waitress' || this.employeeForm.value.jobTitle === 'Dinning Room Manager') ? 'block
+          ' : 'none' }" type="text" class="form-control" formControlName="tipRate" placeholder="Tip Rate" aria-label="Tip Rate"
+            aria-describedby="tipRate">
         </div>
-        <div *ngIf="employeeForm.controls.tipRate.invalid && (employeeForm.controls.tipRate.dirty || employeeForm.controls.tipRate.touched)"
-          class="alert alert-danger">
+        <div *ngIf="employeeForm.controls.tipRate.invalid && employeeForm.value.tipRate" class="alert alert-danger">
           <div *ngIf="employeeForm.controls.tipRate.errors.required">
             Tip Rate is required.
           </div>
@@ -163,14 +174,21 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 offset-md-1">
+      <div class="col-md-6">
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
         <p>Status</p>
       </div>
       <div class="col-md-3">
         <div class="btn-group-toggle" data-toggle="buttons">
           <label [ngStyle]="{ 'background-color': this.employeeForm.value.status ? '#00e600
-          ' : '#d85959' }" class="btn btn-light active">
-            <input type="checkbox" formControlName="status" id="status" checked autocomplete="off"> {{ employeeForm.value.status }}
+              ' : '#d85959' }" class="btn btn-light active">
+            <input type="checkbox" formControlName="status" id="status" checked autocomplete="off">
+            <p></p>
           </label>
         </div>
         <div *ngIf="employeeForm.controls.status.invalid && (employeeForm.controls.status.dirty || employeeForm.controls.status.touched)"
@@ -179,6 +197,9 @@
             Status is required.
           </div>
         </div>
+      </div>
+      <div class="col-md-6">
+
       </div>
     </div>
 
@@ -190,8 +211,10 @@
           <fa-icon [icon]="faChevronLeft"></fa-icon> Back</button>
       </div>
       <div *ngIf="title !== 'View Employee'" class="col-md-1">
-        <button *ngIf="title === 'New Employee'" (click)="addEmployee(employeeForm.value)" type="button" [disabled]="employeeForm.pristine" class="btn btn-light" id="save">Save</button>
-        <button *ngIf="title === 'Edit Employee'" (click)="updateEmployee(employeeSelectedId,employeeForm.value)" type="button" [disabled]="employeeForm.pristine" class="btn btn-light" id="save">Save</button>
+        <button *ngIf="title === 'New Employee'" (click)="addEmployee(employeeForm.value)" type="button" [disabled]="employeeForm.invalid"
+          class="btn btn-light" id="save">Save</button>
+        <button *ngIf="title === 'Edit Employee'" (click)="updateEmployee(employeeSelectedId,employeeForm.value)" type="button" [disabled]="employeeForm.invalid"
+          class="btn btn-light" id="save">Save</button>
       </div>
     </div>
 

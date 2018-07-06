@@ -90,10 +90,10 @@ export class NewEmployeeComponent implements OnInit {
       // dob: new FormControl({ value: '', disabled: this.formDisabled }, [Validators.required, Validators.pattern(this.datePattern)]),
       dob: new FormControl({ value: '', disabled: this.formDisabled }, [Validators.required]),
       hireDate: new FormControl({ value: '', disabled: this.formDisabled }, Validators.required),
-      jobTitle: new FormControl({ value: '0', disabled: this.formDisabled }, Validators.required),
+      jobTitle: new FormControl({ value: '', disabled: this.formDisabled }, Validators.required),
       name: new FormControl({ value: '', disabled: this.formDisabled }, Validators.required),
       status: new FormControl({ value: '', disabled: this.formDisabled }, Validators.required),
-      tipRate: new FormControl({ value: '', disabled: this.formDisabled }, Validators.required),
+      tipRate: new FormControl({ value: '0', disabled: this.formDisabled }, Validators.required),
       username: new FormControl({ value: '', disabled: this.formDisabled }, Validators.required)
     });
     console.log(this.employeeForm);
@@ -124,7 +124,7 @@ export class NewEmployeeComponent implements OnInit {
       hireDate: employeeSelected.hireDate,
       jobTitle: employeeSelected.jobTitle,
       name: employeeSelected.name,
-      status: employeeSelected ? 'Active' : 'Inactive',
+      status: employeeSelected.status,
       tipRate: employeeSelected.tipRate,
       username: employeeSelected.username
     });
