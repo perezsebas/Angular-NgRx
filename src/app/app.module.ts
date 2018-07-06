@@ -15,8 +15,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
 import { employeeReducer } from './reducers/employee.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-// import { EffectsModule } from '@ngrx/effects';
-// import { EmployeeEffects } from './effects/employee.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { EmployeeEffects } from './effects/employee.effects';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -40,8 +40,8 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule,
     // AngularFirestoreModule.enablePersistence(),
     StoreModule.forRoot({ states: employeeReducer }),
-    StoreDevtoolsModule.instrument({ logOnly: environment.production })
-    // EffectsModule.forRoot(EmployeeEffects)
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    EffectsModule.forRoot([EmployeeEffects])
 
   ],
   providers: [],

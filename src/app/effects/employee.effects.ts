@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Effect } from '@ngrx/effects';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as employeeActions from './../actions/employee.actions';
-// import 'rxjs/add/operator/switchMap';
-import { switchMap } from 'rxjs/operators';
-
-
+import { mergeMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class EmployeeEffects {
 
-//     constructor(
-//         // private employeeService: employeeService,
-//         private actions$: Actions
-//     ) { }
+    @Effect()
+    goToEmployee$ = this.actions$.pipe(
+        ofType(employeeActions.GO_TO_EMPLOYEES),
+        mergeMap(() =>
+            this.router.navigate(['/employees'])
+        )
+    );
 
-    // @Effect() loadEmployees$ = this.actions$
-    //     .ofType(employeeActions.LOAD_EMPLOYEES)
-    //     .switchMap(() => this.employeeService.loadEmployees()
-    //         .map(employees => (new employeeActions.LoadEmployeesSuccessAction(employees))
-    //         )
+    constructor(
+        private actions$: Actions,
+        private router: Router) { }
 }

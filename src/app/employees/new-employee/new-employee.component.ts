@@ -52,8 +52,6 @@ export class NewEmployeeComponent implements OnInit {
   getParams() {
     this.route.params.subscribe(params => {
 
-      console.log(params);
-
       if (params.action === 'new') {
         this.title = 'New Employee';
         this.createForm();
@@ -75,7 +73,7 @@ export class NewEmployeeComponent implements OnInit {
             this.employeeSelectedId = element.id;
           }
         });
-        console.log(this.employeeSelected);
+
         if (this.employeeSelected !== undefined) {
           this.setFormValues(this.employeeSelected);
         }
@@ -96,7 +94,6 @@ export class NewEmployeeComponent implements OnInit {
       tipRate: new FormControl({ value: '0', disabled: this.formDisabled }, Validators.required),
       username: new FormControl({ value: '', disabled: this.formDisabled }, Validators.required)
     });
-    console.log(this.employeeForm);
   }
 
   getCountries() {
@@ -109,14 +106,12 @@ export class NewEmployeeComponent implements OnInit {
   getValuesFromStore() {
     let storeState;
     this.store.subscribe(state => {
-      console.log(state);
       storeState = state;
     }).unsubscribe;
     return storeState;
   }
 
   setFormValues(employeeSelected: Employee) {
-    console.log(employeeSelected);
     this.employeeForm.patchValue({
       area: employeeSelected.area,
       country: employeeSelected.country,
@@ -134,6 +129,7 @@ export class NewEmployeeComponent implements OnInit {
   addEmployee(newEmployee: Employee) {
     this.employeesCollectionRef.add(newEmployee);
     this.store.dispatch(new employeeActions.AddEmployeeAction(newEmployee));
+    // this.store.dispatch(new employeeActions.GoToEmployees());
     this.goToEmployeesComponent();
   }
 
@@ -141,6 +137,7 @@ export class NewEmployeeComponent implements OnInit {
     employee.id = employeeId;
     this.employeesCollectionRef.doc(employee.id).update(employee);
     this.store.dispatch(new employeeActions.EditEmployeeAction(employee));
+    // this.store.dispatch(new employeeActions.GoToEmployees());
     this.goToEmployeesComponent();
   }
 
