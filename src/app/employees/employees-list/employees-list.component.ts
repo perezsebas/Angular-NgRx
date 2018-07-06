@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 import * as employeeActions from './../../actions/employee.actions';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
@@ -53,22 +53,22 @@ export class EmployeesListComponent implements OnInit {
         });
       })
     )
+
     this.setStoreValues();
   }
 
   setStoreValues() {
-    this.employees$.subscribe(employee => {
+    this.employees$.pipe(first()).subscribe(employee => {
       this.store.dispatch(new employeeActions.LoadEmployeesAction(employee));
-    }).unsubscribe;  
+    });  
   }
 
   deleteEmployee(employee: Employee) {
     this.employeesCollectionRef.doc(employee.id).delete();
-    // this.store.dispatch(new employeeActions.DeleteEmployeeAction(employee.id));
+    this.store.dispatch(new employeeActions.DeleteEmployeeAction(employee.id));
   }
 
   goToNewEmployeeComponent(view: string, employeeId: string) {
-    // this.setStoreValues();
     this.router.navigate([`/new-employee/${view}/${employeeId}`]);
   }
 

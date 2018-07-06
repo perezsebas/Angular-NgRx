@@ -1,9 +1,9 @@
 <div class="container">
 
-  <h4>New Employee</h4>
+  <h4>{{ title }}</h4>
   <hr />
 
-  <form [formGroup]="employeeForm" (ngSubmit)="addEmployee(employeeForm.value)">
+  <form [formGroup]="employeeForm">
 
     <div class="row">
       <div class="col-md-2">
@@ -44,6 +44,9 @@
           <div *ngIf="employeeForm.controls.dob.errors.required">
             Dob is required.
           </div>
+          <!-- <div *ngIf="employeeForm.controls.dob.errors.pattern">
+            Dob must have this format: dd/mm/aaaa
+          </div> -->
         </div>
       </div>
       <div class="col-md-2 offset-md-1">
@@ -186,8 +189,9 @@
         <button (click)="goToEmployeesComponent()" type="button" class="btn btn-link" id="save">
           <fa-icon [icon]="faChevronLeft"></fa-icon> Back</button>
       </div>
-      <div class="col-md-1">
-        <button type="submit" [disabled]="employeeForm.pristine" class="btn btn-light" id="save">Save</button>
+      <div *ngIf="title !== 'View Employee'" class="col-md-1">
+        <button *ngIf="title === 'New Employee'" (click)="addEmployee(employeeForm.value)" type="button" [disabled]="employeeForm.pristine" class="btn btn-light" id="save">Save</button>
+        <button *ngIf="title === 'Edit Employee'" (click)="updateEmployee(employeeSelectedId,employeeForm.value)" type="button" [disabled]="employeeForm.pristine" class="btn btn-light" id="save">Save</button>
       </div>
     </div>
 

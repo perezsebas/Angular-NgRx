@@ -16,7 +16,7 @@ export function employeeReducer(state = initialState, action: employeeActions.Ac
         case employeeActions.ADD_EMPLOYEE: {
             return {
                 ...state,
-                employees: [...state.employees, action.payload]
+                employees: [action.payload, ...state.employees]
             };
         }
         case employeeActions.EDIT_EMPLOYEE: {

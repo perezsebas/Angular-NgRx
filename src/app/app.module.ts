@@ -37,7 +37,8 @@ import { environment } from '../environments/environment';
     FontAwesomeModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'TeamInt'),
-    AngularFirestoreModule.enablePersistence(),
+    AngularFirestoreModule,
+    // AngularFirestoreModule.enablePersistence(),
     StoreModule.forRoot({ states: employeeReducer }),
     StoreDevtoolsModule.instrument({ logOnly: environment.production })
     // EffectsModule.forRoot(EmployeeEffects)
