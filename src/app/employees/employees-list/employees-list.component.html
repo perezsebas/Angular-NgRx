@@ -11,7 +11,7 @@
             <fa-icon [icon]="faSearch"></fa-icon>
           </span>
         </div>
-        <input type="text" class="form-control" placeholder="Search by anything" aria-label="Search" aria-describedby="search">
+        <input type="text" (keyup)="search($event)" class="form-control" placeholder="Search by name" aria-label="Search" aria-describedby="search">
       </div>
     </div>
   </div>

@@ -29,7 +29,8 @@ export class EmployeesListComponent implements OnInit {
   employeesCollectionRef: AngularFirestoreCollection<Employee>;
   employees$: Observable<Employee[]>;
 
-  subscription;
+  startAt: string;
+  endAt: string;
 
   constructor(
     private store: Store<AppState>,
@@ -60,7 +61,7 @@ export class EmployeesListComponent implements OnInit {
   setStoreValues() {
     this.employees$.pipe(first()).subscribe(employee => {
       this.store.dispatch(new employeeActions.LoadEmployeesAction(employee));
-    });  
+    });
   }
 
   deleteEmployee(employee: Employee) {
@@ -70,6 +71,20 @@ export class EmployeesListComponent implements OnInit {
 
   goToNewEmployeeComponent(view: string, employeeId: string) {
     this.router.navigate([`/new-employee/${view}/${employeeId}`]);
+  }
+
+  search($event) {
+    this.startAt = $event.target.value;
+    this.endAt = $event.target.value + "\uf8ff";
+
+    this.employeesCollectionRef = this.db.collection<Employee>('/employees', ref =>
+      ref
+        .orderBy('name')
+        .startAt(this.startAt)
+        .endAt(this.endAt)
+    );
+
+    this.getEmployees();
   }
 
 }
