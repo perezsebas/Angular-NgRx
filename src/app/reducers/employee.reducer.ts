@@ -35,7 +35,6 @@ export function employeeReducer(state = initialState, action: employeeActions.Ac
                 employees: state.employees.filter(employee => employee.id !== action.payload)
             };
         }
-
         default: {
             return state;
         }
