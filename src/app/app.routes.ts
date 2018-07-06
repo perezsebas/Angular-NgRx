@@ -8,8 +8,7 @@ import { PageNotFoundComponent } from './common/page-not-found/page-not-found.co
 const routes: Routes = [
     { path: '', redirectTo: 'employees', pathMatch: 'full' },
     { path: 'employees', component: EmployeesListComponent },
-    { path: 'new-employee', component: NewEmployeeComponent },
-    { path: 'new-employee/:id', component: NewEmployeeComponent },
+    { path: 'new-employee/:action/:id', component: NewEmployeeComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
 
