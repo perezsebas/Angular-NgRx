@@ -3,7 +3,7 @@
   <h4>New Employee</h4>
   <hr />
 
-  <form [formGroup]="employeeForm" (ngSubmit)="addUser(employeeForm.value)">
+  <form [formGroup]="employeeForm" (ngSubmit)="addEmployee(employeeForm.value)">
 
     <div class="row">
       <div class="col-md-2">
@@ -13,6 +13,12 @@
         <div class="input-group mb-3">
           <input type="text" class="form-control" formControlName="name" placeholder="Name" aria-label="Username" aria-describedby="name">
         </div>
+        <div *ngIf="employeeForm.controls.name.invalid && (employeeForm.controls.name.dirty || employeeForm.controls.name.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.name.errors.required">
+            Name is required.
+          </div>
+        </div>
       </div>
       <div class="col-md-6">
 
@@ -21,16 +27,23 @@
 
     <div class="row">
       <div class="col-md-2">
-        <p>Dab</p>
+        <p>DoB</p>
       </div>
       <div class="col-md-3">
         <div class="input-group mb-3">
-          <select class="custom-select" formControlName="dab" id="dab">
-            <option>Select...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+          <input type="text" class="form-control" formControlName="dob" id="dob" placeholder="dd/mm/aaaa" aria-label="Date of Birth"
+            aria-describedby="calendar">
+          <div class="input-group-append">
+            <span class="input-group-text" id="calendar">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </span>
+          </div>
+        </div>
+        <div *ngIf="employeeForm.controls.dob.invalid && (employeeForm.controls.dob.dirty || employeeForm.controls.dob.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.dob.errors.required">
+            Dob is required.
+          </div>
         </div>
       </div>
       <div class="col-md-2 offset-md-1">
@@ -38,12 +51,18 @@
       </div>
       <div class="col-md-3">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-light">
+          <label [ngStyle]="{ 'background-color': this.employeeForm.value.area === 'services' ? '#ced4da' : '' }" class="btn btn-light">
             <input type="radio" name="area" formControlName="area" value="services"> Services
           </label>
-          <label class="btn btn-light">
+          <label [ngStyle]="{ 'background-color': this.employeeForm.value.area === 'kitchen' ? '#ced4da' : '' }" class="btn btn-light">
             <input type="radio" name="area" formControlName="area" value="kitchen"> Kitchen
           </label>
+        </div>
+        <div *ngIf="employeeForm.controls.area.invalid && (employeeForm.controls.area.dirty || employeeForm.controls.area.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.area.errors.required">
+            Area is required.
+          </div>
         </div>
       </div>
     </div>
@@ -55,11 +74,17 @@
       <div class="col-md-3">
         <div class="input-group mb-3">
           <select class="custom-select" formControlName="country" id="country">
-            <option>Select...</option>
+            <option value="0" selected>Select country...</option>
             <option *ngFor="let country of countries" value="{{ country.name }}">
               {{ country.name }}
             </option>
           </select>
+        </div>
+        <div *ngIf="employeeForm.controls.area.invalid && (employeeForm.controls.area.dirty || employeeForm.controls.area.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.area.errors.required">
+            Area is required.
+          </div>
         </div>
       </div>
       <div class="col-md-2 offset-md-1">
@@ -68,11 +93,17 @@
       <div class="col-md-3">
         <div class="input-group mb-3">
           <select class="custom-select" formControlName="jobTitle" id="jobTitle">
-            <option>Select...</option>
+            <option value="0" selected>Select job title...</option>
             <option value="1">One</option>
             <option value="2">Two</option>
             <option value="3">Three</option>
           </select>
+        </div>
+        <div *ngIf="employeeForm.controls.jobTitle.invalid && (employeeForm.controls.jobTitle.dirty || employeeForm.controls.jobTitle.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.jobTitle.errors.required">
+            Job Title is required.
+          </div>
         </div>
       </div>
     </div>
@@ -85,6 +116,12 @@
         <div class="input-group mb-3">
           <input type="text" class="form-control" formControlName="username" placeholder="Username" aria-label="Username" aria-describedby="username">
         </div>
+        <div *ngIf="employeeForm.controls.username.invalid && (employeeForm.controls.username.dirty || employeeForm.controls.username.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.username.errors.required">
+            Username is required.
+          </div>
+        </div>
       </div>
       <div class="col-md-2 offset-md-1">
         <p>Tip Rate</p>
@@ -92,6 +129,12 @@
       <div class="col-md-3">
         <div class="input-group mb-3">
           <input type="text" class="form-control" formControlName="tipRate" placeholder="Tip Rate" aria-label="Tip Rate" aria-describedby="tipRate">
+        </div>
+        <div *ngIf="employeeForm.controls.tipRate.invalid && (employeeForm.controls.tipRate.dirty || employeeForm.controls.tipRate.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.tipRate.errors.required">
+            Tip Rate is required.
+          </div>
         </div>
       </div>
     </div>
@@ -102,12 +145,19 @@
       </div>
       <div class="col-md-3">
         <div class="input-group mb-3">
-          <select class="custom-select" formControlName="hireDate" id="hireDate">
-            <option>Select...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+          <input type="text" class="form-control" formControlName="hireDate" id="hireDate" placeholder="dd/mm/aaaa" aria-label="Hire Date"
+            aria-describedby="calendar">
+          <div class="input-group-append">
+            <span class="input-group-text" id="calendar">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </span>
+          </div>
+        </div>
+        <div *ngIf="employeeForm.controls.hireDate.invalid && (employeeForm.controls.hireDate.dirty || employeeForm.controls.hireDate.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.hireDate.errors.required">
+            Hire Date is required.
+          </div>
         </div>
       </div>
       <div class="col-md-2 offset-md-1">
@@ -115,9 +165,16 @@
       </div>
       <div class="col-md-3">
         <div class="btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-light active">
-            <input type="checkbox" formControlName="status" id="status" checked autocomplete="off"> Status
+          <label [ngStyle]="{ 'background-color': this.employeeForm.value.status ? '#00e600
+          ' : '#d85959' }" class="btn btn-light active">
+            <input type="checkbox" formControlName="status" id="status" checked autocomplete="off"> {{ employeeForm.value.status }}
           </label>
+        </div>
+        <div *ngIf="employeeForm.controls.status.invalid && (employeeForm.controls.status.dirty || employeeForm.controls.status.touched)"
+          class="alert alert-danger">
+          <div *ngIf="employeeForm.controls.status.errors.required">
+            Status is required.
+          </div>
         </div>
       </div>
     </div>
@@ -126,7 +183,7 @@
 
     <div class="row">
       <div class="col-md-1">
-        <button [routerLink]="['/employees']" type="button" class="btn btn-link" id="save">
+        <button (click)="goToEmployeesComponent()" type="button" class="btn btn-link" id="save">
           <fa-icon [icon]="faChevronLeft"></fa-icon> Back</button>
       </div>
       <div class="col-md-1">
