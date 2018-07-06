@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { faSearch, faPencilAlt, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { Employee } from '../../models/employee';
@@ -25,14 +27,16 @@ export class EmployeesListComponent implements OnInit {
   faTrash = faTrashAlt;
 
   employeesCollectionRef: AngularFirestoreCollection<Employee>;
-  employees$: Observable<Employee[]>
+  employees$: Observable<Employee[]>;
+
+  subscription;
 
   constructor(
     private store: Store<AppState>,
-    public db: AngularFirestore
-  ) {
+    public db: AngularFirestore,
+    private router: Router) {
 
-    // this.employees$ = this.store.select(state => state.employees);  
+    this.employeesCollectionRef = this.db.collection<Employee>('/employees');
   }
 
   ngOnInit() {
@@ -40,7 +44,6 @@ export class EmployeesListComponent implements OnInit {
   }
 
   getEmployees() {
-    this.employeesCollectionRef = this.db.collection<Employee>('/employees');
     this.employees$ = this.employeesCollectionRef.snapshotChanges().pipe(
       map(actions => {
         return actions.map(action => {
@@ -50,10 +53,23 @@ export class EmployeesListComponent implements OnInit {
         });
       })
     )
+    this.setStoreValues();
+  }
 
-    this.employees$.subscribe(employees => {
-      this.store.dispatch(new employeeActions.LoadEmployeesAction(employees));
-    })
+  setStoreValues() {
+    this.employees$.subscribe(employee => {
+      this.store.dispatch(new employeeActions.LoadEmployeesAction(employee));
+    }).unsubscribe;  
+  }
+
+  deleteEmployee(employee: Employee) {
+    this.employeesCollectionRef.doc(employee.id).delete();
+    // this.store.dispatch(new employeeActions.DeleteEmployeeAction(employee.id));
+  }
+
+  goToNewEmployeeComponent(view: string, employeeId: string) {
+    // this.setStoreValues();
+    this.router.navigate([`/new-employee/${view}/${employeeId}`]);
   }
 
 }
